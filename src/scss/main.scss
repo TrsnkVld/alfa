@@ -1,0 +1,1092 @@
+@import "fonts";
+@import "variables";
+@import "mixins";
+@import "bootstrap-override";
+
+body {
+    cursor: default !important;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    color: $grey;
+    font-family: "Roboto Condensed";
+
+    &::after {
+        width: 12px;
+        height: 100%;
+        display: block;
+        content: "";
+        background: $red;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        user-select: none;
+        pointer-events: none;
+
+        @include adopt($lg) {
+            display: none;
+        }
+    }
+}
+
+main {
+    background: $black-bg;
+}
+
+.red-text {
+    color: $red;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+ul {
+    li {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &.ul-red-stripe {
+        position: relative;
+        margin-bottom: $spacing;
+
+        li {
+            color: $black;
+            padding-left: 30px;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 40px;
+
+            @include adopt($md) {
+                font-size: 20px;
+                line-height: 32px;
+            }
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: $red;
+        }
+
+        &--right {
+            padding-right: 22px;
+            padding-left: 0;
+
+            &::after {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
+.header {
+    padding-top: 12px;
+}
+
+.header,
+.special-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+
+    &__info {
+        padding-top: 27px;
+        padding-right: 99px;
+
+        a {
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        @include adopt($xl) {
+            padding-right: 20px;
+        }
+
+        @include adopt($md) {
+            text-align: center;
+            align-items: center;
+            padding-top: 20px;
+        }
+    }
+
+    .row {
+        height: 116px;
+        z-index: 1;
+        position: relative;
+    }
+
+    &__logo {
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        font-size: 10px;
+        line-height: 11px;
+        user-select: none;
+
+        p:first-child {
+            font-family: "Bebas Neue";
+            font-weight: bold;
+            font-size: 50px;
+            line-height: 38px;
+            letter-spacing: 2.7px;
+
+            @include adopt($md) {
+                line-height: 60px;
+            }
+        }
+
+        p:last-child {
+            text-transform: uppercase;
+        }
+
+        @include adopt($md) {
+            margin-top: 15px;
+            text-align: center;
+            align-items: center;
+        }
+    }
+}
+
+.special-header {
+    background: $black-bg;
+    box-shadow: $shadow;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: 0.4s ease;
+
+    .row {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    &__close {
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    &-item {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+
+        &__img {
+            width: 109px;
+            height: 79px;
+            margin-right: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        &__title {
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: bold;
+            color: $grey;
+        }
+
+        &:hover {
+            .special-header-item__title {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &::before {
+        width: 100%;
+        background: $red;
+        display: block;
+        pointer-events: none;
+        content: "СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ";
+        height: auto;
+        text-align: center;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .header__logo {
+        @include adopt($md) {
+            margin-bottom: 25px;
+        }
+    }
+
+    &.visible {
+        pointer-events: all;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.footer {
+    margin-top: auto;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    line-height: 16px;
+    font-family: "Bebas Neue";
+    font-weight: bold;
+    padding: 14px 0;
+
+    .text-center {
+        &:first-child {
+            @include adopt($md) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    @include adopt($md) {
+        background: #2d2d2d;
+    }
+}
+
+.container {
+    position: relative;
+}
+
+.section {
+    &--welcome {
+        overflow: hidden;
+        background: $black-bg;
+        position: relative;
+        z-index: 1;
+        padding-bottom: 40px;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 12px;
+            background: #e52a27;
+            display: block;
+            pointer-events: none;
+        }
+
+        .card-img--header {
+            &.card-img--lg {
+                position: absolute;
+                height: 420px;
+                right: -177px;
+                top: -562px;
+                transform: rotate(59deg);
+                background: $black-bg;
+                opacity: 0.84;
+
+                @include adopt($xl) {
+                    right: -213px;
+                    top: -477px;
+                    transform: rotate(62deg);
+                }
+
+                @include adopt($lg) {
+                    display: none;
+                }
+            }
+        }
+
+        h1 {
+            padding: 239px 0 234px;
+
+            @include adopt($xl) {
+                padding: 192px 0 200px;
+            }
+
+            @include adopt($lg) {
+                padding: 210px 0 120px;
+            }
+
+            @include adopt($md) {
+                text-align: center;
+                z-index: 1;
+                position: relative;
+                padding: 259px 0 547px;
+                text-shadow: 0px 0px 2px $black-bg, 0px 0px 2px $black-bg, 0px 0px 2px $black-bg, 0px 0px 2px $black-bg,
+                    0px 0px 2px $black-bg, 0px 0px 2px $black-bg, 0px 0px 2px $black-bg;
+
+                span {
+                    margin: 0;
+                }
+            }
+        }
+
+        .card-img {
+            position: absolute;
+            transform: rotate(30deg);
+
+            img {
+                pointer-events: none;
+                user-select: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-30deg);
+            }
+
+            &--xs {
+                top: 432px;
+                right: 565px;
+
+                img {
+                    width: 180%;
+                }
+
+                @include adopt($xl) {
+                    top: 385px;
+                    right: 407px;
+                }
+
+                @include adopt($lg) {
+                    top: 473px;
+                    right: 155px;
+                }
+
+                @include adopt($md) {
+                    top: 510px;
+                    right: 175px;
+                }
+            }
+
+            &--sm {
+                top: 573px;
+                right: 300px;
+
+                img {
+                    width: 177%;
+                }
+
+                @include adopt($xl) {
+                    top: 500px;
+                    right: 190px;
+                }
+
+                @include adopt($lg) {
+                    top: 553px;
+                    right: 0px;
+                }
+
+                @include adopt($md) {
+                    top: 588px;
+                    right: 30px;
+                }
+            }
+
+            &--lg {
+                top: -20px;
+                right: -535px;
+
+                img {
+                    transform: translate(-45%, -44%) rotate(-30deg);
+                    width: 130%;
+                }
+
+                @include adopt($xl) {
+                    top: 30px;
+                    right: -500px;
+
+                    img {
+                        transform: translate(-62%, -39%) rotate(-30deg);
+                    }
+                }
+
+                @include adopt($lg) {
+                    top: 250px;
+                    right: -360px;
+
+                    img {
+                        transform: translate(-50%, -50%) rotate(-30deg);
+                        width: 150%;
+                    }
+                }
+
+                @include adopt($md) {
+                    top: 292px;
+                    right: -325px;
+                }
+            }
+        }
+
+        &__map {
+            position: absolute;
+            bottom: -417px;
+            left: 50%;
+            transform: translateX(77px) rotate(30deg);
+            z-index: -1;
+            width: 1033px;
+            height: 763px;
+            background: $blank;
+            border: 10px solid $red;
+            overflow: hidden;
+
+            img {
+                transform: translate(-50%, -50%) rotate(-30deg);
+                width: 130%;
+                top: 23%;
+                left: 31%;
+                position: absolute;
+
+                @include adopt($xl) {
+                    top: 40%;
+                    left: 23%;
+                }
+
+                @include adopt($lg) {
+                    top: 53.8%;
+                    left: 37.9%;
+                    width: 210%;
+                }
+
+                @include adopt($md) {
+                    width: 180%;
+                    top: 48.1%;
+                    left: 35.2%;
+                }
+            }
+
+            @include adopt($lg) {
+                width: 620px;
+                height: 890px;
+                bottom: -267px;
+                transform: translateX(37px) rotate(30deg);
+                border: none;
+            }
+
+            @include adopt($md) {
+                transform: translateX(-153px) rotate(30deg);
+                left: auto;
+                right: -460px;
+            }
+        }
+
+        @include adopt($md) {
+            padding-bottom: 0;
+        }
+    }
+
+    &--info {
+        background: linear-gradient(90deg, $black-bg 50%, $grey 50%);
+        padding-top: 100px;
+
+        &:last-of-type {
+            padding-bottom: 280px;
+
+            @include adopt($lg) {
+                padding-bottom: 44px;
+            }
+
+            @include adopt($md) {
+                padding-bottom: 80px;
+            }
+        }
+
+        &__left {
+            padding-right: 90px;
+
+            .cards-wrap {
+                &:first-of-type {
+                    margin-bottom: 180px;
+
+                    @include adopt($lg) {
+                        margin-bottom: 80px;
+                    }
+                }
+
+                &:last-of-type {
+                    @include adopt($lg) {
+                        margin-bottom: 80px;
+                    }
+                }
+            }
+
+            @include adopt($lg) {
+                padding-right: 0;
+            }
+        }
+
+        &__right {
+            color: $black;
+            padding-left: 45px;
+
+            h2 {
+                color: $black;
+
+                span {
+                    margin: 0;
+                }
+            }
+
+            p {
+                font-size: 25px;
+                line-height: 29px;
+                margin-bottom: $spacing;
+            }
+
+            .red-text {
+                font-family: "Bebas Neue";
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 20px;
+                margin-bottom: 100px;
+                display: block;
+            }
+
+            @include adopt($lg) {
+                padding-left: 0;
+                padding-top: 100px;
+                padding-bottom: 65px;
+                position: relative;
+                z-index: 3;
+
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    width: 200%;
+                    height: 120%;
+                    content: "";
+                    display: block;
+                    background: $grey;
+                    z-index: -1;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+
+        @include adopt($lg) {
+            background: transparent;
+            overflow: hidden;
+        }
+    }
+
+    &--special,
+    &--useful {
+        position: relative;
+        z-index: 1;
+        background: #dadada;
+
+        h2 {
+            color: $black;
+            margin-bottom: 50px;
+        }
+    }
+
+    &--special {
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    &--useful {
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+}
+
+//Typo
+
+h1,
+h2 {
+    text-transform: uppercase;
+    font-family: "Bebas Neue";
+    font-weight: bold;
+    color: $grey;
+
+    span {
+        color: $red;
+        display: block;
+        margin-left: -30px;
+        margin-bottom: -2px;
+    }
+
+    &.flat {
+        span {
+            display: inline-block;
+            margin: 0;
+            margin-right: 20px;
+        }
+    }
+}
+
+h1 {
+    font-size: 80px;
+    line-height: 80px;
+
+    @include adopt($md) {
+        font-size: 50px;
+        line-height: 51px;
+    }
+}
+
+h2 {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: $spacing;
+
+    span {
+        margin-left: -15px;
+        margin-bottom: -2px;
+    }
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 30px;
+    font-family: "Bebas Neue";
+    margin-bottom: 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    font-family: "Bebas Neue";
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 25px;
+    letter-spacing: 1.3px;
+    color: #4b3f3f;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.card-img {
+    border-radius: $radius;
+    background: $blank;
+    box-shadow: $shadow;
+    overflow: hidden;
+
+    &--xs {
+        width: 246px;
+        height: 246px;
+
+        @include adopt($xl) {
+            width: 200px;
+            height: 200px;
+        }
+
+        @include adopt($lg) {
+            width: 133px;
+            height: 133px;
+        }
+    }
+
+    &--sm {
+        width: 301px;
+        height: 301px;
+
+        @include adopt($xl) {
+            width: 250px;
+            height: 250px;
+        }
+
+        @include adopt($lg) {
+            width: 163px;
+            height: 163px;
+        }
+    }
+
+    &--lg {
+        width: 1033px;
+        height: 763px;
+
+        @include adopt($xl) {
+            width: 800px;
+            height: 630px;
+        }
+
+        @include adopt($lg) {
+            width: 481px;
+            height: 355px;
+        }
+    }
+}
+
+.benefits-list {
+    &__item {
+        font-family: "Bebas Neue";
+        font-size: 25px;
+        line-height: 25px;
+        color: $grey;
+        padding-left: 55px;
+        position: relative;
+        margin-bottom: 15px;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 36px;
+            height: 25px;
+            background-image: url("../../icons/checkmark.svg");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.show-special {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 100px;
+    user-select: none;
+
+    &-wrap {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    @include adopt($xl) {
+        margin-left: 50px;
+    }
+
+    @include adopt($lg) {
+        font-size: inherit;
+        line-height: inherit;
+        margin-left: 0;
+    }
+
+    @include adopt($md) {
+        &-wrap {
+            padding-top: 20px;
+            justify-content: center;
+        }
+    }
+}
+
+.map-info {
+    text-align: right;
+    padding-top: 208px;
+    position: relative;
+
+    &::after {
+        content: "";
+        background: $red;
+        width: 20px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 46%;
+        z-index: 1;
+        border-radius: 50%;
+
+        @include adopt($xl) {
+            top: 65%;
+            right: 58%;
+        }
+
+        @include adopt($lg) {
+            top: 40%;
+            right: 40%;
+        }
+
+        @include adopt($md) {
+            top: -5%;
+            right: 245px;
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    h2 {
+        color: $red;
+        font-family: "Roboto Condensed";
+        margin-bottom: $spacing;
+
+        p {
+            font-size: 30px;
+            line-height: 30px;
+            text-transform: none;
+            color: $black;
+            margin-top: 5px;
+        }
+
+        @include adopt($md) {
+            font-size: 30px;
+            line-height: 35px;
+            margin-bottom: 20px;
+
+            p {
+                font-size: 20px;
+                line-height: 24px;
+                margin-top: 0;
+            }
+        }
+    }
+
+    ul {
+        li {
+            font-size: 20px;
+            line-height: 24px;
+
+            @include adopt($md) {
+                font-size: 16px;
+                line-height: 19px;
+            }
+        }
+
+        &:last-of-type {
+            li {
+                color: $black;
+                font-weight: bold;
+
+                @include adopt($md) {
+                    font-size: 14px;
+                    line-height: 16px;
+                }
+            }
+        }
+
+        @include adopt($md) {
+            margin-bottom: 20px;
+        }
+    }
+
+    @include adopt($lg) {
+        padding-top: 20px;
+        margin-top: -100px;
+    }
+
+    @include adopt($md) {
+        z-index: 1;
+        position: relative;
+    }
+}
+
+.cards {
+    margin: 0 -10px;
+    display: flex;
+    flex-flow: wrap;
+
+    &-wrap {
+        overflow: auto;
+        margin: 0 -20px;
+        padding: 0 20px;
+    }
+
+    &__item {
+        width: 50%;
+        padding: 0 10px 20px;
+
+        .inner {
+            width: 100%;
+            border-radius: $radius;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.501);
+            background: $blank;
+            position: relative;
+            overflow: hidden;
+            background-position: center;
+            background-size: cover;
+            display: block;
+            transition: 0.2s ease;
+
+            &::after {
+                display: block;
+                content: "";
+                padding-top: 100%;
+            }
+        }
+
+        a {
+            &:hover {
+                box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.501);
+            }
+        }
+    }
+
+    @include adopt($md) {
+        min-width: 510px;
+    }
+}
+
+
+.swiper {
+    &-container {
+        margin: 0 -20px;
+        padding: 0 20px;
+    }
+
+    &-pagination {
+        position: relative;
+        bottom: 0;
+        line-height: 12px;
+        margin-top: 90px;
+
+        &-bullet {
+            width: 12px;
+            height: 12px;
+            background: #e5e5e5;
+            border: 1px solid #4b3f3f;
+            transition: background 0.4s ease;
+            opacity: 1;
+            display: inline-block;
+
+            &-active {
+                background: #4b3f3f;
+            }
+        }
+    }
+
+    &-container-horizontal > .swiper-pagination-bullets {
+        bottom: 0;
+
+        .swiper-pagination-bullet {
+            margin: 0 5px;
+        }
+    }
+}
+
+.card-text {
+    display: block;
+
+    &__img {
+        overflow: hidden;
+        border-radius: $radius;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.501);
+        height: 290px;
+        margin-bottom: $spacing;
+        background-position: center;
+        background-size: cover;
+        transition: box-shadow 0.2s ease;
+    }
+
+    &__title,
+    &__text {
+        font-size: 25px;
+        line-height: 29px;
+        font-family: "Roboto Condensed";
+        color: #4b3f3f;
+        padding: 0 17px;
+    }
+
+    &__title {
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    &a {
+        background: red;
+    }
+}
+
+a.card-text {
+    @extend .card-text;
+
+    &:hover {
+        text-decoration: none;
+
+        .card-text__img {
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.501);
+        }
+
+        .card-text__title {
+            text-decoration: underline;
+        }
+    }
+}
+
+.card-text-wrap {
+    .card-text {
+        margin-bottom: 50px;
+    }
+
+    .btn {
+        margin: 0 auto;
+    }
+}
+
+#scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease;
+    transform: translateY(50px);
+
+    img {
+        display: block;
+    }
+
+    &.visible {
+        pointer-events: all;
+        transform: translateY(0);
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    @include adopt($lg) {
+        left: auto;
+        right: 20px;
+
+        img {
+            width: 50px;
+        }
+    }
+
+    @include adopt($md) {
+        img {
+            width: 40px;
+        }
+    }
+}

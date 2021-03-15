@@ -1,0 +1,11 @@
+@mixin adopt($value, $prop: max-width) {
+    @media only screen and (#{$prop}: #{($value - 1)}) {
+        @content;
+    }
+}
+
+@mixin up($value, $prop: min-width) {
+    @media only screen and (#{$prop}: #{$value}) {
+        @content;
+    }
+}
